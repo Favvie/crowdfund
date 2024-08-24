@@ -46,7 +46,7 @@ contract Crowdfunding {
 }
 
     // Function to allow users to donate to a specific crowdfunding campaign
-    function donateToCampaign(string memory _campaignTitle)payable public {
+    function donateToCampaign(string memory _campaignTitle) payable public {
         
         // Access the campaign from storage using the provided title as the key
         Campaign storage campaign = campaigns[_campaignTitle];
