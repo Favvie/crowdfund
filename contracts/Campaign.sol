@@ -46,7 +46,7 @@ contract Crowdfunding {
 }
 
     // Function to allow users to donate to a specific crowdfunding campaign
-    function donateToCampaign(string memory _campaignTitle, uint _amountToDonate) public {
+    function donateToCampaign(string memory _campaignTitle)payable public {
         
         // Access the campaign from storage using the provided title as the key
         Campaign storage campaign = campaigns[_campaignTitle];
@@ -55,10 +55,10 @@ contract Crowdfunding {
         require(block.timestamp < campaign.deadline, 'Campaign has ended');
         
         // Increment the total amount raised for this campaign by the donation amount
-        campaign.amountRaised += _amountToDonate;
+        campaign.amountRaised += msg.value;
         
         // Emit an event to log the donation, including the campaign title and the donated amount
-        emit DonationReceived(_campaignTitle, _amountToDonate);
+        emit DonationReceived(_campaignTitle, msg.value);
 
     }
 
